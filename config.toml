@@ -1,0 +1,35 @@
+baseURL = "https://sportchallengetraining.fr/"
+languageCode = "fr-fr"
+title = "Sport Challenge Training"
+theme = "flavor"
+
+[params]
+  description = "Découvrez nos articles et conseils experts"
+  author = "Rédaction"
+
+[menu]
+  [[menu.main]]
+    name = "Accueil"
+    url = "/"
+    weight = 1
+  [[menu.main]]
+    name = "Articles"
+    url = "/section-1/"
+    weight = 2
+  [[menu.main]]
+    name = "Conseils"
+    url = "/section-2/"
+    weight = 3
+  [[menu.main]]
+    name = "À propos"
+    url = "/a-propos/"
+    weight = 4
+  [[menu.main]]
+    name = "Contact"
+    url = "/contact/"
+    weight = 5
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
