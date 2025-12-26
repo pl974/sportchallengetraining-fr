@@ -1,0 +1,147 @@
+{{ define "main" }}
+
+<div class="list-layout">
+  
+  <header class="list-layout__header">
+    <h1 class="list-layout__title">{{ .Title }}</h1>
+    {{ with .Description }}
+    <p class="list-layout__description">{{ . }}</p>
+    {{ end }}
+  </header>
+  
+  <div class="grid grid--sidebar">
+    
+    <div class="grid__main">
+      {{ $paginator := .Paginate .Pages 9 }}
+      
+      <div class="grid grid--3col">
+        {{ range $paginator.Pages }}
+        <article class="card">
+          <a href="{{ .Permalink }}" class="card__media">
+            {{ $image := .Params.image }}
+            {{ if $image }}
+            <img src="{{ $image }}" alt="{{ .Title }}" class="card__image" loading="lazy">
+            {{ else }}
+            <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=600&h=375&fit=crop&auto=format&q=80&sig={{ .Permalink | md5 }}" alt="{{ .Title }}" class="card__image" loading="lazy">
+            {{ end }}
+            {{ with .Section }}
+            <span class="card__badge">{{ . }}</span>
+            {{ end }}
+          </a>
+          <div class="card__content">
+            <div class="card__meta">
+              <span class="card__meta-item">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="16" height="16">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                </svg>
+                {{ .Date.Format "2 Jan 2006" }}
+              </span>
+              <span class="card__meta-item">
+                {{ $words := countwords .Content }}
+                {{ $readTime := div $words 200 }}
+                {{ if lt $readTime 1 }}1{{ else }}{{ $readTime }}{{ end }} min
+              </span>
+            </div>
+            <h2 class="card__title">
+              <a href="{{ .Permalink }}">{{ .Title }}</a>
+            </h2>
+            <p class="card__excerpt">{{ .Summary | truncate 150 }}</p>
+            <div class="card__footer">
+              <a href="{{ .Permalink }}" class="card__link">
+                Lire la suite
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </article>
+        {{ end }}
+      </div>
+      
+      {{ if gt $paginator.TotalPages 1 }}
+      <nav class="pagination" aria-label="Pagination">
+        {{ if $paginator.HasPrev }}
+        <a href="{{ $paginator.Prev.URL }}" class="pagination__link" aria-label="Page précédente">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="20" height="20">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+          </svg>
+        </a>
+        {{ end }}
+        
+        {{ $adjacent := 2 }}
+        {{ $start := math.Max 1 (sub $paginator.PageNumber $adjacent) }}
+        {{ $end := math.Min $paginator.TotalPages (add $paginator.PageNumber $adjacent) }}
+        
+        {{ range $paginator.Pagers }}
+          {{ if and (ge .PageNumber $start) (le .PageNumber $end) }}
+          <a href="{{ .URL }}" class="pagination__link {{ if eq . $paginator }}is-current{{ end }}">
+            {{ .PageNumber }}
+          </a>
+          {{ end }}
+        {{ end }}
+        
+        {{ if $paginator.HasNext }}
+        <a href="{{ $paginator.Next.URL }}" class="pagination__link" aria-label="Page suivante">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="20" height="20">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+          </svg>
+        </a>
+        {{ end }}
+      </nav>
+      {{ end }}
+      
+    </div>
+    
+    <aside class="grid__aside">
+      
+      <div class="widget widget--categories">
+        <h3 class="widget__title">Catégories</h3>
+        <div class="widget__list">
+          {{ range .Site.Sections }}
+          <a href="{{ .Permalink }}" class="widget__link">
+            {{ .Title }}
+            <span class="widget__count">{{ len .Pages }}</span>
+          </a>
+          {{ end }}
+        </div>
+      </div>
+      
+      <div class="widget widget--recent">
+        <h3 class="widget__title">Articles récents</h3>
+        <div class="widget__list">
+          {{ range first 5 .Site.RegularPages }}
+          <div class="widget__item">
+            <div class="widget__thumb">
+              {{ $image := .Params.image }}
+              {{ if $image }}
+              <img src="{{ $image }}" alt="{{ .Title }}" loading="lazy">
+              {{ else }}
+              <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=100&h=100&fit=crop&auto=format&q=80" alt="{{ .Title }}" loading="lazy">
+              {{ end }}
+            </div>
+            <div class="widget__content">
+              <a href="{{ .Permalink }}" class="widget__link">{{ .Title }}</a>
+              <span class="widget__date">{{ .Date.Format "2 Jan 2006" }}</span>
+            </div>
+          </div>
+          {{ end }}
+        </div>
+      </div>
+      
+      <div class="widget widget--newsletter">
+        <h3 class="widget__title">Newsletter</h3>
+        <p class="widget__text">Recevez nos meilleurs conseils directement dans votre boîte mail.</p>
+        <form class="widget__form" action="#" method="POST">
+          <input type="email" class="widget__input" placeholder="Votre email" required>
+          <button type="submit" class="widget__btn">S'inscrire</button>
+        </form>
+      </div>
+      
+    </aside>
+    
+  </div>
+  
+</div>
+
+{{ end }}

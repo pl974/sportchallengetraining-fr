@@ -1,11 +1,24 @@
-# Spin Configuration - Auto-generated
-header: 1
-hero: 4
-section1: 4
-section2: 3
-section3: 0
-grid: 1
-card: 3
-footer: 3
-palette: 2
-fonts: 1
+site:
+  domain: sportchallengetraining.fr
+  hash: 2621
+  generated: 2025-12-26
+
+components:
+  header: 1
+  hero: 0
+  section1: 0
+  section2: 6
+  section3: 7
+  grid: 1
+  card: 0
+  footer: 1
+
+design:
+  palette: copper
+  typography: modern
+  
+customizations:
+  accent_gradient: true
+  card_shadow: soft
+  rounded_corners: medium
+  animation_style: subtle

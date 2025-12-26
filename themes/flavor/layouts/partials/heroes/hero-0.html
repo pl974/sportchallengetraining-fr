@@ -1,0 +1,30 @@
+<section class="hero hero--split">
+  <div class="hero__container">
+    
+    <div class="hero__content">
+      <span class="hero__eyebrow">{{ .Site.Title }}</span>
+      <h1 class="hero__title">{{ .Site.Params.tagline | default "Performance, Bien-être et Dépassement de soi" }}</h1>
+      <p class="hero__text">{{ .Site.Params.description | default "Ressources et conseils d'experts pour optimiser votre entraînement, nutrition et récupération. Atteignez vos objectifs sportifs avec des méthodes éprouvées." }}</p>
+      
+      <div class="hero__actions">
+        <a href="/entrainement/" class="hero__btn hero__btn--primary">
+          Nos guides
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="20" height="20">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+          </svg>
+        </a>
+        <a href="/a-propos/" class="hero__btn hero__btn--secondary">Qui sommes-nous</a>
+      </div>
+    </div>
+    
+    <div class="hero__media">
+      <img 
+        src="/images/hero-fitness-studio.jpg" 
+        alt="Studio de fitness professionnel" 
+        class="hero__img"
+        loading="eager"
+      >
+    </div>
+    
+  </div>
+</section>

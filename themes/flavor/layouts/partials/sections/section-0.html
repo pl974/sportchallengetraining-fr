@@ -1,0 +1,65 @@
+<section class="sect sect--latest">
+  <div class="sect__container">
+    
+    <header class="sect__header">
+      <div class="sect__header-content">
+        <span class="sect__eyebrow">Nos articles</span>
+        <h2 class="sect__title">Les dernières publications</h2>
+        <p class="sect__subtitle">Conseils pratiques, guides détaillés et analyses d'experts pour votre progression.</p>
+      </div>
+      <a href="/entrainement/" class="link-arrow">
+        Voir tous les articles
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+        </svg>
+      </a>
+    </header>
+    
+    <div class="sect__grid">
+      {{ $pages := .Site.RegularPages }}
+      {{ range first 6 $pages }}
+      <article class="card">
+        <a href="{{ .Permalink }}" class="card__media">
+          {{ $image := .Params.image }}
+          {{ if $image }}
+          <img src="{{ $image }}" alt="{{ .Title }}" class="card__image" loading="lazy">
+          {{ else }}
+          <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=600&h=375&fit=crop&auto=format&q=80&sig={{ .Permalink | md5 }}" alt="{{ .Title }}" class="card__image" loading="lazy">
+          {{ end }}
+          {{ with .Section }}
+          <span class="card__badge">{{ . }}</span>
+          {{ end }}
+        </a>
+        <div class="card__content">
+          <div class="card__meta">
+            <span class="card__meta-item">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="16" height="16">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+              </svg>
+              {{ .Date.Format "2 Jan 2006" }}
+            </span>
+            <span class="card__meta-item">
+              {{ $words := countwords .Content }}
+              {{ $readTime := div $words 200 }}
+              {{ if lt $readTime 1 }}1{{ else }}{{ $readTime }}{{ end }} min
+            </span>
+          </div>
+          <h3 class="card__title">
+            <a href="{{ .Permalink }}">{{ .Title }}</a>
+          </h3>
+          <p class="card__excerpt">{{ .Summary | truncate 120 }}</p>
+          <div class="card__footer">
+            <a href="{{ .Permalink }}" class="card__link">
+              Lire la suite
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </article>
+      {{ end }}
+    </div>
+    
+  </div>
+</section>

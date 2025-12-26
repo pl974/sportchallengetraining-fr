@@ -1,0 +1,43 @@
+<header class="hdr hdr--modern" role="banner" data-scroll-header>
+  <div class="hdr__wrapper">
+    
+    <a href="{{ .Site.BaseURL }}" class="hdr__brand">
+      <span class="hdr__monogram">S</span>
+      <span class="hdr__brand-name">{{ .Site.Title }}</span>
+    </a>
+    
+    <nav class="hdr__nav" role="navigation" aria-label="Navigation principale">
+      {{ range .Site.Menus.main }}
+      <a href="{{ .URL }}" class="hdr__link {{ if $.IsMenuCurrent "main" . }}is-current{{ end }}">
+        <span class="hdr__link-text">{{ .Name }}</span>
+        <span class="hdr__link-line"></span>
+      </a>
+      {{ end }}
+    </nav>
+    
+    <button class="hdr__menu-btn" type="button" aria-label="Ouvrir le menu" data-toggle="mobile-menu">
+      <svg class="hdr__menu-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+      </svg>
+    </button>
+    
+  </div>
+</header>
+
+<div class="hdr__mobile-menu" data-mobile-menu hidden>
+  <div class="hdr__mobile-header">
+    <a href="{{ .Site.BaseURL }}" class="hdr__brand">
+      <span class="hdr__monogram">S</span>
+    </a>
+    <button class="hdr__mobile-close" type="button" aria-label="Fermer le menu" data-close-menu>
+      <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+      </svg>
+    </button>
+  </div>
+  <nav class="hdr__mobile-nav">
+    {{ range .Site.Menus.main }}
+    <a href="{{ .URL }}" class="hdr__mobile-link">{{ .Name }}</a>
+    {{ end }}
+  </nav>
+</div>
