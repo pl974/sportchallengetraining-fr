@@ -2,6 +2,7 @@
 
 <article class="article">
   
+  {{/* Article Header */}}
   <header class="article__header">
     <div class="article__meta">
       {{ with .Section }}
@@ -24,6 +25,7 @@
     {{ end }}
   </header>
   
+  {{/* Featured Image */}}
   {{ $image := .Params.image | default .Params.featured_image }}
   {{ with $image }}
   <figure class="article__featured">
@@ -35,12 +37,15 @@
   </figure>
   {{ end }}
   
+  {{/* Article Content */}}
   <div class="article__content prose">
     {{ .Content }}
   </div>
   
+  {{/* Article Footer */}}
   <footer class="article__footer">
     
+    {{/* Tags */}}
     {{ with .Params.tags }}
     <div class="article__tags">
       {{ range . }}
@@ -49,6 +54,7 @@
     </div>
     {{ end }}
     
+    {{/* Share */}}
     <div class="article__share">
       <span class="article__share-label">Partager :</span>
       <div class="article__share-links">
@@ -72,6 +78,7 @@
     
   </footer>
   
+  {{/* Related Articles */}}
   {{ $related := .Site.RegularPages.Related . | first 3 }}
   {{ with $related }}
   <section class="article__related">
