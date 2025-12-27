@@ -2,6 +2,7 @@
 
 <div class="list-layout">
   
+  {{/* Header */}}
   <header class="list-layout__header">
     <h1 class="list-layout__title">{{ .Title }}</h1>
     {{ with .Description }}
@@ -9,8 +10,10 @@
     {{ end }}
   </header>
   
+  {{/* Grid with Sidebar */}}
   <div class="grid grid--sidebar">
     
+    {{/* Main Content */}}
     <div class="grid__main">
       {{ $paginator := .Paginate .Pages 9 }}
       
@@ -59,6 +62,7 @@
         {{ end }}
       </div>
       
+      {{/* Pagination */}}
       {{ if gt $paginator.TotalPages 1 }}
       <nav class="pagination" aria-label="Pagination">
         {{ if $paginator.HasPrev }}
@@ -93,8 +97,10 @@
       
     </div>
     
+    {{/* Sidebar */}}
     <aside class="grid__aside">
       
+      {{/* Categories Widget */}}
       <div class="widget widget--categories">
         <h3 class="widget__title">Catégories</h3>
         <div class="widget__list">
@@ -107,6 +113,7 @@
         </div>
       </div>
       
+      {{/* Recent Posts Widget */}}
       <div class="widget widget--recent">
         <h3 class="widget__title">Articles récents</h3>
         <div class="widget__list">
@@ -129,6 +136,7 @@
         </div>
       </div>
       
+      {{/* Newsletter Widget */}}
       <div class="widget widget--newsletter">
         <h3 class="widget__title">Newsletter</h3>
         <p class="widget__text">Recevez nos meilleurs conseils directement dans votre boîte mail.</p>
