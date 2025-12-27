@@ -1,11 +1,18 @@
+{{/* 
+  Header 1: Modern Transparent
+  Transitions from transparent to solid on scroll with glassmorphism effect.
+*/}}
+
 <header class="hdr hdr--modern" role="banner" data-scroll-header>
   <div class="hdr__wrapper">
     
+    {{/* Brand */}}
     <a href="{{ .Site.BaseURL }}" class="hdr__brand">
       <span class="hdr__monogram">S</span>
       <span class="hdr__brand-name">{{ .Site.Title }}</span>
     </a>
     
+    {{/* Navigation */}}
     <nav class="hdr__nav" role="navigation" aria-label="Navigation principale">
       {{ range .Site.Menus.main }}
       <a href="{{ .URL }}" class="hdr__link {{ if $.IsMenuCurrent "main" . }}is-current{{ end }}">
@@ -15,6 +22,7 @@
       {{ end }}
     </nav>
     
+    {{/* Mobile Menu Button */}}
     <button class="hdr__menu-btn" type="button" aria-label="Ouvrir le menu" data-toggle="mobile-menu">
       <svg class="hdr__menu-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
@@ -24,6 +32,7 @@
   </div>
 </header>
 
+{{/* Mobile Menu */}}
 <div class="hdr__mobile-menu" data-mobile-menu hidden>
   <div class="hdr__mobile-header">
     <a href="{{ .Site.BaseURL }}" class="hdr__brand">
