@@ -1,22 +1,26 @@
+# Spin Configuration - sportchallengetraining.fr
+# Hash: 2621 - Composants déterministes avec personnalisation anti-footprint
+
 site:
   domain: sportchallengetraining.fr
   hash: 2621
   generated: 2025-12-26
 
 components:
-  header: 1
-  hero: 0
-  section1: 0
-  section2: 6
-  section3: 7
-  grid: 1
-  card: 0
-  footer: 1
+  header: 1     # Modern transparent
+  hero: 0       # Split 50/50
+  section1: 0   # Latest articles
+  section2: 6   # Testimonials
+  section3: 7   # Newsletter
+  grid: 1       # Sidebar
+  card: 0       # Vertical
+  footer: 1     # Duo asymétrique
 
 design:
   palette: copper
   typography: modern
   
+# Personnalisations anti-footprint
 customizations:
   accent_gradient: true
   card_shadow: soft

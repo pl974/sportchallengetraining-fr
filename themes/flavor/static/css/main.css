@@ -1,7 +1,19 @@
+/* ========================================
+   MAIN CSS - Sport Challenge Training
+   ========================================
+   
+   Design System: Copper + Modern
+   Generated: 2025-12-26
+   Hash: 2621
+   
+   ======================================== */
+
+/* Base */
 @import url('base/variables.css');
 @import url('base/reset.css');
 @import url('base/utilities.css');
 
+/* Components */
 @import url('components/headers.css');
 @import url('components/heroes.css');
 @import url('components/sections.css');

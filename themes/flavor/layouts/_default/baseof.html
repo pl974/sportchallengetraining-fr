@@ -5,11 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   
+  {{/* SEO Meta */}}
   <title>{{ if .IsHome }}{{ .Site.Title }} - {{ .Site.Params.tagline }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
   <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
   <meta name="author" content="{{ .Site.Params.author }}">
   <link rel="canonical" href="{{ .Permalink }}">
   
+  {{/* Open Graph */}}
   <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
   <meta property="og:title" content="{{ .Title }}">
   <meta property="og:description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
@@ -20,21 +22,28 @@
   <meta property="og:image" content="{{ . | absURL }}">
   {{ end }}
   
+  {{/* Twitter Card */}}
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="{{ .Title }}">
   <meta name="twitter:description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
   
+  {{/* Fonts - Inter + JetBrains Mono */}}
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
   
+  {{/* Styles */}}
   <link rel="stylesheet" href="{{ "css/main.css" | relURL }}">
+  
+  {{/* Favicon */}}
   <link rel="icon" type="image/svg+xml" href="{{ "images/favicon.svg" | relURL }}">
   
+  {{/* RSS */}}
   {{ range .AlternativeOutputFormats -}}
   {{ printf `<link rel="%s" type="%s" href="%s" title="%s">` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
   {{ end -}}
   
+  {{/* Schema.org */}}
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -61,20 +70,25 @@
   </script>
 </head>
 <body>
+  {{/* Header */}}
   {{ partial "headers/header-1.html" . }}
   
+  {{/* Main Content */}}
   <main id="main-content">
     {{ block "main" . }}{{ end }}
   </main>
   
+  {{/* Footer */}}
   {{ partial "footers/footer-1.html" . }}
   
+  {{/* Back to top */}}
   <button class="ftr__back-top" aria-label="Retour en haut">
     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"/>
     </svg>
   </button>
   
+  {{/* Scripts */}}
   <script src="{{ "js/main.js" | relURL }}" defer></script>
 </body>
 </html>

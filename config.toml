@@ -15,6 +15,7 @@ summaryLength = 70
   copyright = "Sport Challenge Training"
   logo = "/images/logo.svg"
   
+  # Design system - Unique pour ce domaine
   header = 1
   hero = 0
   section1 = 0
