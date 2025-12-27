@@ -1,6 +1,12 @@
+{{/* 
+  Hero 0: Split 50/50
+  Classic two-column hero with content left, image right.
+*/}}
+
 <section class="hero hero--split">
   <div class="hero__container">
     
+    {{/* Content side */}}
     <div class="hero__content">
       <span class="hero__eyebrow">{{ .Site.Title }}</span>
       <h1 class="hero__title">{{ .Site.Params.tagline | default "Performance, Bien-être et Dépassement de soi" }}</h1>
@@ -17,9 +23,10 @@
       </div>
     </div>
     
+    {{/* Image side */}}
     <div class="hero__media">
       <img 
-        src="/images/hero-fitness-studio.jpg" 
+        src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1200&h=800&fit=crop&q=80" 
         alt="Studio de fitness professionnel" 
         class="hero__img"
         loading="eager"
